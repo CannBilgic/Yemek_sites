@@ -61,9 +61,16 @@ public class KullanicilarBean implements Serializable {
         this.getDao().create(entity);
         entity = new Kullanicilar();
     }
-    public void delete(){
-        this.getDao().delete(entity);
+    public void delete(Kullanicilar k){
+        this.getDao().delete(k);
         entity = new Kullanicilar();
+    }
+    public void clear(){
+        entity = new Kullanicilar();
+    }
+    public void update(){
+       this.getDao().update(entity);
+        entity = new Kullanicilar(); 
     }
 
     public KullanicilarBean() {

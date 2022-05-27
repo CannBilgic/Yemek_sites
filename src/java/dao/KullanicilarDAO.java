@@ -29,7 +29,8 @@ public class KullanicilarDAO extends DBConnection{
     public void update(Kullanicilar k){
         try{
             Statement st =this.getConnection().createStatement();
-            String query="";
+            String query="update kullanicilar  set sifre='"+k.getSifre()+"'where id ="+k.getId();
+            
             st.executeUpdate(query) ;
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -39,7 +40,7 @@ public class KullanicilarDAO extends DBConnection{
     public void delete(Kullanicilar k){
         try{
             Statement st =this.getConnection().createStatement();
-            String query="delete from kullanicilar where id='"+k.getId()+"'";
+            String query="delete from kullanicilar where id="+k.getId();
             st.executeUpdate(query);
         }catch(Exception e){
             System.out.println(e.getMessage());
