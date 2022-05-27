@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>Yorum</title>
+    </head>
+    <body>
+        <h:form>
+            <h:commandButton action="/index" value="Main"/>
+        </h:form>
+        <hr/>
+        <h:form>
+            Kullanıcı girin: <h:inputText value="#{yorumBean.entity.kullanici}"/><br/>
+            Yorum girin: <h:inputText value="#{yorumBean.entity.yorum}"/><br/>
+            Puan girin: <h:inputText value="#{yorumBean.entity.puan}"/><br/>
+            
+            
+            <h:commandButton rendered="#{yorumBean.entity.id==0}" action="#{yorumBean.create()}" value="Kayit et"/>
+            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.update()}" value="Kayit güncelle"/>
+            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.clear()}" value="vazgeç"/>
+        </h:form>
+        
+        <h:form>
+             <h:dataTable value="#{yorumBean.list}" var="entity">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                        #{entity.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">KULLANICI ADI</f:facet>
+                        #{entity.kullanici}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">YORUM</f:facet>
+                        #{entity.yorum}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">PUAN</f:facet>
+                        #{entity.puan}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ADMİN</f:facet>
+                    <h:commandButton action="#{yorumBean.delete(entity)}" value="Sil"/>
+                    <h:commandButton action="#{yorumBean.setEntity(entity)}" value="güncelle"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        
+    </body>
+</html>
+

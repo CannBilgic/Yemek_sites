@@ -1,4 +1,4 @@
-create table kullanicilar(
+create table kullanicilar( can
 	id serial primary key,
 	kullanici_adi varchar(20),
 	sifre varchar(16) not null,
@@ -8,17 +8,18 @@ create table kullanicilar(
 	sef bool default false
 );
 
-create table yetkililer(
+create table yetkililer( furkan
 	id int primary key references kullanicilar(id)
 );
 
-create table yorum_puan(
+create table yorum_puan( can
 	id serial primary key,
+	kullanici int references kullananicilar(id)
 	yorum varchar(200),
 	puan int
 );
 
-create table ana_yemekler(
+create table ana_yemekler(  furkan
 	id serial primary key,
 	yemek_adi varchar(30),
 	tarif text,
@@ -30,7 +31,7 @@ create table ana_yemekler(
 	yorum_puan int references yorum_puan(id)
 );
 
-create table atistirmalik(
+create table atistirmalik( can
 	id serial primary key,
 	yemek_adi varchar(30),
 	tarif text,
@@ -42,7 +43,7 @@ create table atistirmalik(
 	yorum_puan int references yorum_puan(id)
 );
 
-create table salatalar(
+create table salatalar( furkan
 	id serial primary key,
 	yemek_adi varchar(30),
 	tarif text,
@@ -54,7 +55,7 @@ create table salatalar(
 	yorum_puan int references yorum_puan(id)
 );
 
-create table tatlilar(
+create table tatlilar( can
 	id serial primary key,
 	yemek_adi varchar(30),
 	tarif text,
@@ -66,7 +67,7 @@ create table tatlilar(
 	yorum_puan int references yorum_puan(id)
 );
 
-create table icecekler(
+create table icecekler( furkan
 	id serial primary key,
 	yemek_adi varchar(30),
 	tarif text,
@@ -78,7 +79,7 @@ create table icecekler(
 	yorum_puan int references yorum_puan(id)
 );
 
-create table deniz_urunleri(
+create table deniz_urunleri( 
 	id serial primary key,
 	yemek_adi varchar(30),
 	tarif text,
