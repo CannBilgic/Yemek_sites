@@ -19,7 +19,6 @@
             Hazırlama Süresi: <h:inputText value="#{anayemekBean.entity.hazirlama_sure}"/><br/>
             Pişirme Süresi: <h:inputText value="#{anayemekBean.entity.pisirme_sure}"/><br/>
             Şef: <h:inputText value="#{anayemekBean.entity.sef}"/><br/>
-            Yorum: <h:inputText value="#{anayemekBean.entity.yorum_puan}"/><br/>
 
             <h:commandButton rendered="#{anayemekBean.entity.yemek_adi==null}" action="#{anayemekBean.create()}" value="Kayit et"/>
             <h:commandButton rendered="#{anayemekBean.entity.yemek_adi!=null}" action="#{anayemekBean.update()}" value="Kayit güncelle"/>
@@ -60,10 +59,6 @@
                 <h:column>
                     <f:facet name="header">SEF</f:facet>
                         #{entity.sef}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">YORUM</f:facet>
-                        #{entity.yorum_puan}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>

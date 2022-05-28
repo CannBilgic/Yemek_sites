@@ -17,13 +17,12 @@ public class AnaYemek {
     private int hazirlama_sure;
     private int pisirme_sure;
     private int sef;
-    private int yorum_puan;
     
     public AnaYemek(){
         
     }
     
-    public AnaYemek(int id,String yemek_adi,String tarif,String malzemeler,int kac_kisilik,int hazirlama_sure,int pisirme_sure,int sef,int yorum_puan){
+    public AnaYemek(int id,String yemek_adi,String tarif,String malzemeler,int kac_kisilik,int hazirlama_sure,int pisirme_sure,int sef){
         this.id = id;
         this.yemek_adi = yemek_adi;
         this.tarif = tarif;
@@ -32,7 +31,6 @@ public class AnaYemek {
         this.hazirlama_sure = hazirlama_sure;
         this.pisirme_sure = pisirme_sure;
         this.sef = sef;
-        this.yorum_puan = yorum_puan;
     }
 
     public int getId() {
@@ -98,14 +96,6 @@ public class AnaYemek {
     public void setSef(int sef) {
         this.sef = sef;
     }
-    
-    public int getYorum_puan() {
-        return yorum_puan;
-    }
-
-    public void setYorum_puan(int yorum_puan) {
-        this.yorum_puan = yorum_puan;
-    }
-    
+       
     
 }

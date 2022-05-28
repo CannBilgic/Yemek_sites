@@ -18,9 +18,9 @@ public class IceceklerDAO extends DBConnection {
     public void create(Icecekler k){
         try{
             Statement st = this.getConnection().createStatement();
-            String query="insert into icecekler (yemek_adi,tarif,malzemeler,kac_kisilik,hazirlama_sure,pisirme_sure,sef,yorum_puan) values"
+            String query="insert into icecekler (yemek_adi,tarif,malzemeler,kac_kisilik,hazirlama_sure,pisirme_sure,sef) values"
                     + "('"+k.getYemek_adi()+"','"+k.getTarif()+"','"+k.getMalzemeler()+"','"+k.getKac_kisilik()+"','"+k.getHazirlama_sure()+"',"
-                    + "'"+k.getPisirme_sure()+"','"+k.getSef()+"','"+k.getYorum_puan()+"')";
+                    + "'"+k.getPisirme_sure()+"','"+k.getSef()+"')";
             st.executeUpdate(query);
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -30,7 +30,7 @@ public class IceceklerDAO extends DBConnection {
     public void update(Icecekler k){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update icecekler set yorum_puan='"+k.getYorum_puan()+"'where id=" +k.getId();
+            String query = "update icecekler set yemek_adi='"+k.getYemek_adi()+"'where id=" +k.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class IceceklerDAO extends DBConnection {
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new Icecekler (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),
-                    rs.getInt("hazirlama_sure"),rs.getInt("pisirme_sure"),rs.getInt("sef"),rs.getInt("yorum_puan")));
+                    rs.getInt("hazirlama_sure"),rs.getInt("pisirme_sure"),rs.getInt("sef")));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
