@@ -18,7 +18,7 @@
             Kaç Kişilik: <h:inputText value="#{denizUrunleriBean.entity.kac_kisilik}"/><br/>
             Hazırlama Süresi: <h:inputText value="#{denizUrunleriBean.entity.hazirlama_sure}"/><br/>
             Pişirme Süresi: <h:inputText value="#{denizUrunleriBean.entity.pisirme_sure}"/><br/>
-            Şef: <h:inputText value="#{denizurunleriBean.entity.sef}"/><br/>
+            Şef: <h:inputText value="#{denizUrunleriBean.entity.sef}"/><br/>
 
             <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi==null}" action="#{denizUrunleriBean.create()}" value="Kayit et"/>
             <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.update()}" value="Kayit güncelle"/>

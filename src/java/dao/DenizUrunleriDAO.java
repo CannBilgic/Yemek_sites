@@ -53,7 +53,7 @@ public class DenizUrunleriDAO extends DBConnection {
         List <DenizUrunleri> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * deniz_urunleri";
+            String query = "select * from deniz_urunleri";
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new DenizUrunleri (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),

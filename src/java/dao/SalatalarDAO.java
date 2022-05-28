@@ -53,7 +53,7 @@ public class SalatalarDAO extends DBConnection {
         List <Salatalar> list = new ArrayList<>();
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * salatalar";
+            String query = "select * from salatalar";
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new Salatalar (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),
