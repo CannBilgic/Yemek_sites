@@ -16,10 +16,9 @@ import java.util.List;
  */
 public class YorumDAO extends DBConnection{
     public void create(Yorum y){
-        int i =0;
         try{
             Statement  st =this.getConnection().createStatement();
-            String query="insert into yorum_puan(yorum,puan,kullanici)values ('"+y.getYorum()+"','"+y.getPuan()+"','"+y.getKullanici()+"')";
+            String query="insert into yorum_puan(tur,yemek_id,yorum,puan,kullanici)values ('"+y.getTur()+"','"+y.getYemekId()+"','"+y.getYorum()+"','"+y.getPuan()+"','"+y.getKullanici()+"')";
             st.executeUpdate(query);
             
         }catch(Exception ex){
@@ -52,7 +51,7 @@ public class YorumDAO extends DBConnection{
             String query="Select * from yorum_puan";
             ResultSet rs =st.executeQuery(query);
             while(rs.next()){
-                list.add(new Yorum (rs.getInt("id"),rs.getString("yorum"),rs.getInt("puan"),rs.getInt("kullanici")));
+                list.add(new Yorum (rs.getInt("id"),rs.getString("tur"),rs.getInt("yemek_id"),rs.getString("yorum"),rs.getInt("puan"),rs.getInt("kullanici")));
             }
             
             

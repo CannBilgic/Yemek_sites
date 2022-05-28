@@ -13,6 +13,8 @@
         <hr/>
         <h:form>
             Kullanıcı girin: <h:inputText value="#{yorumBean.entity.kullanici}"/><br/>
+            Tur girin: <h:inputText value="#{yorumBean.entity.tur}"/><br/>
+            Yorum yapılacak yemek ıd: <h:inputText value="#{yorumBean.entity.yemekId}"/><br/>
             Yorum girin: <h:inputText value="#{yorumBean.entity.yorum}"/><br/>
             Puan girin: <h:inputText value="#{yorumBean.entity.puan}"/><br/>
             
@@ -33,10 +35,18 @@
                         #{entity.kullanici}
                 </h:column>
                 <h:column>
+                    <f:facet name="header">TUR</f:facet>
+                        #{entity.tur}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">YEMEK ID</f:facet>
+                        #{entity.yemekId}
+                </h:column>
+                 <h:column>
                     <f:facet name="header">YORUM</f:facet>
                         #{entity.yorum}
                 </h:column>
-                <h:column>
+                 <h:column>
                     <f:facet name="header">PUAN</f:facet>
                         #{entity.puan}
                 </h:column>

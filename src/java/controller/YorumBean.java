@@ -59,8 +59,8 @@ public class YorumBean implements Serializable {
         entity = new Yorum();
     }
 
-    public void delete(Yorum k) {
-        this.getDao().delete(k);
+    public void delete(Yorum y) {
+        this.getDao().delete(y);
         entity = new Yorum();
     }
 

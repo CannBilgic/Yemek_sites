@@ -10,15 +10,41 @@ package entity;
  */
 public class Yorum {
     private int id;
+    private String tur;
+    private int yemekId;
     private String yorum;
     private int puan;
     private int kullanici;
 
-    public Yorum(int id, String yorum, int puan, int kullanici) {
+    public Yorum(int id, String tur, int yemekId, String yorum, int puan, int kullanici) {
         this.id = id;
+        this.tur = tur;
+        this.yemekId = yemekId;
         this.yorum = yorum;
         this.puan = puan;
         this.kullanici = kullanici;
+    }
+    
+
+    public String getTur() {
+        return tur;
+    }
+
+    public void setTur(String tur) {
+        this.tur = tur;
+    }
+
+    public int getYemekId() {
+        return yemekId;
+    }
+
+    public void setYemekId(int yemekId) {
+        this.yemekId = yemekId;
+    }
+
+
+    public Yorum(int id) {
+        this.id = id;
     }
 
     public Yorum() {
