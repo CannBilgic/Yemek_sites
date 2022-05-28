@@ -14,6 +14,8 @@ create table yetkililer(
 
 create table yorum_puan(
 	id serial primary key,
+	tur varchar(40),
+	yemek_id int,
 	yorum varchar(1000),
 	puan int,
 	kullanici int references kullanicilar(id)
@@ -28,70 +30,64 @@ create table ana_yemekler(
 	hazirlama_sure int,
 	pisirme_sure int,
 	sef int references kullanicilar(id),
-	yorum_puan int references yorum_puan(id)
 );
 
 create table atistirmalik(
 	id serial primary key,
-	yemek_adi varchar(30),
+	yemek_adi varchar(40),
 	tarif text,
 	malzemeler text,
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
 	sef int references kullanicilar(id),
-	yorum_puan int references yorum_puan(id)
 );
 
 create table salatalar(
 	id serial primary key,
-	yemek_adi varchar(30),
+	yemek_adi varchar(40),
 	tarif text,
 	malzemeler text,
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
 	sef int references kullanicilar(id),
-	yorum_puan int references yorum_puan(id)
 );
 
 create table tatlilar(
 	id serial primary key,
-	yemek_adi varchar(30),
+	yemek_adi varchar(40),
 	tarif text,
 	malzemeler text,
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
 	sef int references kullanicilar(id),
-	yorum_puan int references yorum_puan(id)
 );
 
 create table icecekler(
 	id serial primary key,
-	yemek_adi varchar(30),
+	yemek_adi varchar(40),
 	tarif text,
 	malzemeler text,
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
 	sef int references kullanicilar(id),
-	yorum_puan int references yorum_puan(id)
 );
 
 create table deniz_urunleri(
 	id serial primary key,
-	yemek_adi varchar(30),
+	yemek_adi varchar(40),
 	tarif text,
 	malzemeler text,
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
 	sef int references kullanicilar(id),
-	yorum_puan int references yorum_puan(id)
 );
 
 create table yoreseller(
 	id int primary key references ana_yemekler(id),
-	yore varchar(30)	
+	yore varchar(40)	
 );
