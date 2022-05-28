@@ -7,7 +7,7 @@ package entity;
 /**
  *
  * @author mfurk
- */
+ */  
 public class AnaYemek {
     private int id;
     private String yemek_adi;
