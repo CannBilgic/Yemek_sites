@@ -29,7 +29,7 @@ create table ana_yemekler(
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
-	sef int references kullanicilar(id),
+	sef int references kullanicilar(id)
 );
 
 create table atistirmalik(
@@ -40,7 +40,7 @@ create table atistirmalik(
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
-	sef int references kullanicilar(id),
+	sef int references kullanicilar(id)
 );
 
 create table salatalar(
@@ -51,7 +51,7 @@ create table salatalar(
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
-	sef int references kullanicilar(id),
+	sef int references kullanicilar(id)
 );
 
 create table tatlilar(
@@ -62,7 +62,7 @@ create table tatlilar(
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
-	sef int references kullanicilar(id),
+	sef int references kullanicilar(id)
 );
 
 create table icecekler(
@@ -73,7 +73,7 @@ create table icecekler(
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
-	sef int references kullanicilar(id),
+	sef int references kullanicilar(id)
 );
 
 create table deniz_urunleri(
@@ -84,7 +84,7 @@ create table deniz_urunleri(
 	kac_kisilik int,
 	hazirlama_sure int,
 	pisirme_sure int,
-	sef int references kullanicilar(id),
+	sef int references kullanicilar(id)
 );
 
 create table yoreseller(

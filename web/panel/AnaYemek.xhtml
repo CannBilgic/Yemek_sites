@@ -12,22 +12,22 @@
         </h:form>
         <hr/>
         <h:form>
-            Yemek Adı Girin: <h:inputText value="#{anayemekBean.entity.yemek_adi}"/><br/>
-            Tarif Girin: <h:inputText value="#{anayemekBean.entity.tarif}"/><br/>
-            Malzemeleri Girin: <h:inputText value="#{anayemekBean.entity.malzemeler}"/><br/>
-            Kaç Kişilik: <h:inputText value="#{anayemekBean.entity.kac_kisilik}"/><br/>
-            Hazırlama Süresi: <h:inputText value="#{anayemekBean.entity.hazirlama_sure}"/><br/>
-            Pişirme Süresi: <h:inputText value="#{anayemekBean.entity.pisirme_sure}"/><br/>
-            Şef: <h:inputText value="#{anayemekBean.entity.sef}"/><br/>
+            Yemek Adı Girin: <h:inputText value="#{anaYemekBean.entity.yemek_adi}"/><br/>
+            Tarif Girin: <h:inputText value="#{anaYemekBean.entity.tarif}"/><br/>
+            Malzemeleri Girin: <h:inputText value="#{anaYemekBean.entity.malzemeler}"/><br/>
+            Kaç Kişilik: <h:inputText value="#{anaYemekBean.entity.kac_kisilik}"/><br/>
+            Hazırlama Süresi: <h:inputText value="#{anaYemekBean.entity.hazirlama_sure}"/><br/>
+            Pişirme Süresi: <h:inputText value="#{anaYemekBean.entity.pisirme_sure}"/><br/>
+            Şef: <h:inputText value="#{anaYemekBean.entity.sef}"/><br/>
 
-            <h:commandButton rendered="#{anayemekBean.entity.yemek_adi==null}" action="#{anayemekBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{anayemekBean.entity.yemek_adi!=null}" action="#{anayemekBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{anayemekBean.entity.yemek_adi!=null}" action="#{anayemekBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{anaYemekBean.entity.yemek_adi==null}" action="#{anaYemekBean.create()}" value="Kayit et"/>
+            <h:commandButton rendered="#{anaYemekBean.entity.yemek_adi!=null}" action="#{anaYemekBean.update()}" value="Kayit güncelle"/>
+            <h:commandButton rendered="#{anaYemekBean.entity.yemek_adi!=null}" action="#{anaYemekBean.clear()}" value="vazgeç"/>
 
         </h:form>
         <hr/>
         <h:form>    
-            <h:dataTable value="#{anayemekBean.list}" var="entity">
+            <h:dataTable value="#{anaYemekBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                         #{entity.id}
@@ -62,8 +62,8 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{anayemekBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{anayemekBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{anaYemekBean.delete(entity)}" value="Sil"/>
+                    <h:commandButton action="#{anaYemekBean.setEntity(entity)}" value="güncelle"/>
                 </h:column>
             </h:dataTable>
         </h:form>

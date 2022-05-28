@@ -15,7 +15,7 @@ import jakarta.enterprise.context.SessionScoped;
  *
  * @author mfurk
  */
-@Named
+@Named(value = "iceceklerBean")
 @SessionScoped
 public class IceceklerBean implements Serializable{
     private Icecekler entity;
