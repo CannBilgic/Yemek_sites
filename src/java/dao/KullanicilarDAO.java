@@ -19,7 +19,7 @@ public class KullanicilarDAO extends DBConnection{
     public void create(Kullanicilar k){
         try{
             Statement st =this.getConnection().createStatement();
-            String query="insert into kullanicilar(id,kullanici_adi,sifre,sehir,yas,cinsiyet,sef) values ('"+ k.getId()+"','"+k.getKullanici_adi()+"','"+ k.getSifre()+"','"+ k.getSehir()+"','"+ k.getYas()+"','"+ k.isCinsiyet()+"','"+ k.isSef()+"')";
+            String query="insert into kullanicilar(kullanici_adi,sifre,sehir,yas,cinsiyet,sef) values ('"+k.getKullanici_adi()+"','"+ k.getSifre()+"','"+ k.getSehir()+"','"+ k.getYas()+"','"+ k.isCinsiyet()+"','"+ k.isSef()+"')";
             st.executeUpdate(query);
         }catch(Exception e){
             System.out.println(e.getMessage());
