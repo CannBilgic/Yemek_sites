@@ -22,7 +22,14 @@ public class KullanicilarBean implements Serializable {
     private Kullanicilar entity;
     private KullanicilarDAO dao;
     private List<Kullanicilar> list;
-
+    
+    public String getTitle(int id){
+        Kullanicilar k = this.getDao().findByID(id);
+        return k.getKullanici_adi();
+    }
+    
+    
+    
     public Kullanicilar getEntity() {
         if (entity == null) {
             entity = new Kullanicilar();

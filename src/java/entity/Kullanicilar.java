@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.util.Objects;
+
 /**
  *
  * @author can
@@ -30,6 +32,7 @@ public class Kullanicilar {
         this.cinsiyet = cinsiyet;
         this.sef = sef;
     }
+
 
     public int getId() {
         return id;
@@ -86,6 +89,29 @@ public class Kullanicilar {
     public void setSef(boolean sef) {
         this.sef = sef;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Kullanicilar other = (Kullanicilar) obj;
+        return this.id == other.id;
+    }
+
     
     
 }

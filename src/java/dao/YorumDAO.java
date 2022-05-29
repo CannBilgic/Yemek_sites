@@ -4,6 +4,7 @@
  */
 package dao;
 
+import entity.Kullanicilar;
 import entity.Yorum;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -15,10 +16,26 @@ import java.util.List;
  * @author bilgi
  */
 public class YorumDAO extends DBConnection{
+    private KullanicilarDAO kullanicilar;
+
+    public KullanicilarDAO getKullanicilar() {
+        if(kullanicilar== null){
+            this.kullanicilar = new KullanicilarDAO();
+        }
+        return kullanicilar;
+    }
+
+    public void setKullanicilar(KullanicilarDAO kullanicilar) {
+        this.kullanicilar = kullanicilar;
+    }
+
+    
+
+    
     public void create(Yorum y){
         try{
             Statement  st =this.getConnection().createStatement();
-            String query="insert into yorum_puan(tur,yemek_id,yorum,puan,kullanici)values ('"+y.getTur()+"','"+y.getYemekId()+"','"+y.getYorum()+"','"+y.getPuan()+"','"+y.getKullanici()+"')";
+            String query="insert into yorum_puan(tur,yemek_id,yorum,puan,kullanici)values ('"+y.getTur()+"','"+y.getYemekId()+"','"+y.getYorum()+"','"+y.getPuan()+"','"+y.getKullanicilar().getId()+"')";
             st.executeUpdate(query);
             
         }catch(Exception ex){
@@ -51,7 +68,8 @@ public class YorumDAO extends DBConnection{
             String query="Select * from yorum_puan";
             ResultSet rs =st.executeQuery(query);
             while(rs.next()){
-                list.add(new Yorum (rs.getInt("id"),rs.getString("tur"),rs.getInt("yemek_id"),rs.getString("yorum"),rs.getInt("puan"),rs.getInt("kullanici")));
+                Kullanicilar k = this.getKullanicilar().findByID(rs.getInt("id"));
+                list.add(new Yorum (rs.getInt("id"),rs.getString("tur"),rs.getInt("yemek_id"),rs.getString("yorum"),rs.getInt("puan"),k));
             }
             
             

@@ -9,22 +9,22 @@ package entity;
  * @author bilgi
  */
 public class Yorum {
+
     private int id;
     private String tur;
     private int yemekId;
     private String yorum;
     private int puan;
-    private int kullanici;
+    private Kullanicilar kullanicilar;
 
-    public Yorum(int id, String tur, int yemekId, String yorum, int puan, int kullanici) {
+    public Yorum(int id, String tur, int yemekId, String yorum, int puan, Kullanicilar kullanicilar) {
         this.id = id;
         this.tur = tur;
         this.yemekId = yemekId;
         this.yorum = yorum;
         this.puan = puan;
-        this.kullanici = kullanici;
+        this.kullanicilar = kullanicilar;
     }
-    
 
     public String getTur() {
         return tur;
@@ -41,7 +41,6 @@ public class Yorum {
     public void setYemekId(int yemekId) {
         this.yemekId = yemekId;
     }
-
 
     public Yorum(int id) {
         this.id = id;
@@ -74,14 +73,13 @@ public class Yorum {
         this.puan = puan;
     }
 
-    public int getKullanici() {
-        return kullanici;
+    public Kullanicilar getKullanicilar() {
+        return kullanicilar;
     }
 
-    public void setKullanici(int kullanici) {
-        this.kullanici = kullanici;
+    public void setKullanicilar(Kullanicilar kullanicilar) {
+        this.kullanicilar = kullanicilar;
     }
-    
     
     
 }

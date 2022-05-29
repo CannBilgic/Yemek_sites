@@ -11,20 +11,21 @@ import java.sql.DriverManager;
  *
  * @author can
  */
-public  abstract class DBConnection {
+public abstract class DBConnection {
+
     private Connection connection;
 
     public Connection getConnection() {
-        if(this.connection == null){
+        if (this.connection == null) {
             try {
-            Class.forName("org.postgresql.Driver");
-  
-            this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/YemekSitesi","postgres", "1234");
-            System.out.println("Bağlantı Başarılı");
+                Class.forName("org.postgresql.Driver");
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+                this.connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/YemekSitesi", "postgres", "12345");
+                System.out.println("Bağlantı Başarılı");
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
 
         }
         return connection;

@@ -11,28 +11,32 @@
             <h:commandButton action="/index" value="Main"/>
         </h:form>
         <hr/>
-        <h:form>
-            Kullanıcı girin: <h:inputText value="#{yorumBean.entity.kullanici}"/><br/>
+        <h:form>         
+            
             Tur girin: <h:inputText value="#{yorumBean.entity.tur}"/><br/>
             Yorum yapılacak yemek ıd: <h:inputText value="#{yorumBean.entity.yemekId}"/><br/>
             Yorum girin: <h:inputText value="#{yorumBean.entity.yorum}"/><br/>
             Puan girin: <h:inputText value="#{yorumBean.entity.puan}"/><br/>
-            
-            
+            Kullanıcı:
+            <h:selectOneMenu value="#{yorumBean.entity.kullanicilar}" converter="kullanicilarConverter" >
+                <f:selectItems value="#{kullanicilarBean.list}"  var="k" itemValue="#{k}" itemLabel="#{k.kullanici_adi}"/>
+            </h:selectOneMenu >
+            <br/>
+
             <h:commandButton rendered="#{yorumBean.entity.id==0}" action="#{yorumBean.create()}" value="Kayit et"/>
             <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.update()}" value="Kayit güncelle"/>
             <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.clear()}" value="vazgeç"/>
         </h:form>
-        
+
         <h:form>
-             <h:dataTable value="#{yorumBean.list}" var="entity">
+            <h:dataTable value="#{yorumBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                         #{entity.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">KULLANICI ADI</f:facet>
-                        #{entity.kullanici}
+                        #{entity.kullanicilar.kullanici_adi}
                 </h:column>
                 <h:column>
                     <f:facet name="header">TUR</f:facet>
@@ -42,11 +46,11 @@
                     <f:facet name="header">YEMEK ID</f:facet>
                         #{entity.yemekId}
                 </h:column>
-                 <h:column>
+                <h:column>
                     <f:facet name="header">YORUM</f:facet>
                         #{entity.yorum}
                 </h:column>
-                 <h:column>
+                <h:column>
                     <f:facet name="header">PUAN</f:facet>
                         #{entity.puan}
                 </h:column>
@@ -57,7 +61,7 @@
                 </h:column>
             </h:dataTable>
         </h:form>
-        
+
     </body>
 </html>
 
