@@ -11,8 +11,8 @@
             <h:commandButton action="/index" value="Main"/>
         </h:form>
         <hr/>
-        <h:form>         
-            
+        <h:form id="yorum-form">         
+
             Tur girin: <h:inputText value="#{yorumBean.entity.tur}"/><br/>
             Yorum yapılacak yemek ıd: <h:inputText value="#{yorumBean.entity.yemekId}"/><br/>
             Yorum girin: <h:inputText value="#{yorumBean.entity.yorum}"/><br/>
@@ -23,12 +23,29 @@
             </h:selectOneMenu >
             <br/>
 
-            <h:commandButton rendered="#{yorumBean.entity.id==0}" action="#{yorumBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{yorumBean.entity.id==0}" action="#{yorumBean.create()}" value="Kayit et">
+                <f:ajax execute="yorum-form" render="yorum-form yorum-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.update()}" value="Kayit güncelle">
+                <f:ajax execute="yorum-form" render="yorum-form yorum-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.clear()}" value="vazgeç">
+                <f:ajax execute="@this" render="yorum-form"/>
+            </h:commandButton>
+        </h:form>
+        <h:form>
+            <pre>page #{yorumBean.page} of #{yorumBean.pageCount}</pre>
+            <h:commandButton action="#{yorumBean.previous()}" value="previous" >
+                <f:ajax execute="@this" render="yorum-form"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{yorumBean.next()}" value="next" >
+                <f:ajax execute="@this" render="yorum-form"/>
+            </h:commandButton>
         </h:form>
 
-        <h:form>
+        <h:form id="yorum-table">
+
             <h:dataTable value="#{yorumBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -56,11 +73,17 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMİN</f:facet>
-                    <h:commandButton action="#{yorumBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{yorumBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{yorumBean.delete(entity)}" value="Sil">
+                        <f:ajax execute="yorum-form yorum-table" render="@this"/>
+                    </h:commandButton>
+
+                    <h:commandButton action="#{yorumBean.setEntity(entity)}" value="güncelle">
+                        <f:ajax execute="yorum-form " render="yorum-form yorum-table"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>
+
 
     </body>
 </html>
