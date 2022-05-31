@@ -8,6 +8,8 @@ import dao.KullanicilarDAO;
 import entity.Kullanicilar;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
@@ -79,7 +81,15 @@ public class KullanicilarBean implements Serializable {
        this.getDao().update(entity);
         entity = new Kullanicilar(); 
     }
-
+    
+    public void login(){
+        if(this.getDao().login(entity)){
+            entity = new Kullanicilar();
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", entity);
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Kullanıcı adı veya şifre yanlış"));
+        }
+    }
     public KullanicilarBean() {
 
     }

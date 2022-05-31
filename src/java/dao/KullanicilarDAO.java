@@ -61,7 +61,23 @@ public class KullanicilarDAO extends DBConnection {
             System.out.println(e.getMessage());
         }
     }
-
+    
+    public boolean login(Kullanicilar k){
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "select * from kullanicilar where kullanici_adi='"+k.getKullanici_adi()+"' and sifre ='"+k.getSifre()+"'";
+            ResultSet rs = st.executeQuery(query);
+            if(rs.next()){
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    
     public List<Kullanicilar> getList() {
         List<Kullanicilar> list = new ArrayList<>();
         try {
