@@ -4,20 +4,62 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     </h:head>
     <body>
-        <h:form>
-            <h:commandButton action="/panel/Kullanicilar" value="Kullanıcılar"/>
-            <h:commandButton action="/panel/Yorum" value="Yorum"/>
-            <h:commandButton action="/panel/AnaYemek" value="AnaYemek"/>
-            <h:commandButton action="/panel/Icecekler" value="Icecekler"/>
-            <h:commandButton action="/panel/Salatalar" value="Salatalar"/>
-            <h:commandButton action="/panel/Atistirmalik" value="Atistirmalik"/>
-            <h:commandButton action="/panel/DenizUrunleri" value="DenizUrunleri"/>
-            <h:commandButton action="/panel/Tatli" value="Tatli"/>
-            <h:commandButton action="/panel/Yore" value="Yoreler"/>
-            <h:commandButton action="/panel/Yetkililer" value="Yetkililer"/>
-            <h:commandButton action="/panel/Dosya" value="Dosya"/>
+        <img src="images/yemek.png" width="100%" height="500px"/> <br/><br/><br/>
+
+        <style>
+            .btn{
+                background-color: #ff6600;
+                font-size:100%;
+                color: black;
+                border: 5px;
+           
+                
+            }
+        </style>
+
+        <h:form> 
+            <div style="padding-left:10%">
+
+
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Kullanicilar" value="KULLANICILAR"/>
+                <h:commandButton styleClass="btn btn-danger " action="/panel/Yorum" value="YORUM"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/AnaYemek" value="ANAYEMEK"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Icecekler" value="İÇECEKLER"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Salatalar" value="SALATALAR"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Atistirmalik" value="ATIŞTIRMALIK"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/DenizUrunleri" value="DENİZ ÜRÜNLERİ"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Tatli" value="TATLI"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Yore" value="YÖRELER"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Yetkililer" value="YETKİLİLER"/>
+                <h:commandButton styleClass="btn btn-danger" action="/panel/Dosya" value="DOSYA"/>
+            </div><br/><br/><br/>
+
+            <div style="background-color: #bb2d3b">
+                <div>
+                    <h1  style="padding-left: 40%">ANAYEMEKLER</h1>
+                    <img src="images/yemek1.jpg" width="70%" height="65%" style="padding-left: 30%"/><br/><br/>
+
+                    <h1 style="padding-left: 43%">İÇECEKLER</h1>
+                    <img src="images/içecek.jpg" width="70%" height="65%" style="padding-left: 30%"/><br/><br/>
+
+                    <h1  style="padding-left: 43%">SALATALAR</h1>
+                    <img src="images/salata.jpg" width="70%" height="65%" style="padding-left: 30%"/><br/><br/>
+
+                    <h1  style="padding-left: 40%">ATIŞTIRMALIKLAR</h1>
+                    <img src="images/atıştırmalık.jpg" width="70%" height="65%" style="padding-left: 30%"/><br/><br/>
+
+                    <h1  style="padding-left: 40%">DENİZ ÜRÜNLERİ</h1>
+                    <img src="images/deniz.jpg" width="70%" height="65%" style="padding-left: 30%"/><br/><br/>
+
+
+                    <h1  style="padding-left: 43%">TATLILAR</h1>
+
+                    <img src="images/tatlı.jpg" width="70%" height="60%" style="padding-left: 30%"/><br/><br/>
+                </div> 
+            </div>
         </h:form> 
     </body>
 </html>
