@@ -24,8 +24,7 @@
             <div style="padding-left:10%">
 
 
-                <h:commandButton styleClass="btn btn-danger" action="/panel/Kullanicilar?faces-redirect=true" value="KULLANICILAR"/>
-                <h:commandButton styleClass="btn btn-danger " action="/panel/Yorum?faces-redirect=true" value="YORUM"/>
+                <h:commandButton styleClass="btn btn-danger" rendered="#{isAdmin == true}" action="/panel/Kullanicilar?faces-redirect=true" value="KULLANICILAR"/>
                 <h:commandButton styleClass="btn btn-danger" action="/panel/AnaYemek?faces-redirect=true" value="ANAYEMEK"/>
                 <h:commandButton styleClass="btn btn-danger" action="/panel/Icecekler?faces-redirect=true" value="İÇECEKLER"/>
                 <h:commandButton styleClass="btn btn-danger" action="/panel/Salatalar?faces-redirect=true" value="SALATALAR"/>
@@ -33,9 +32,11 @@
                 <h:commandButton styleClass="btn btn-danger" action="/panel/DenizUrunleri?faces-redirect=true" value="DENİZ ÜRÜNLERİ"/>
                 <h:commandButton styleClass="btn btn-danger" action="/panel/Tatli?faces-redirect=true" value="TATLI"/>
                 <h:commandButton styleClass="btn btn-danger" action="/panel/Yore?faces-redirect=true" value="YÖRELER"/>
-                <h:commandButton styleClass="btn btn-danger" action="/panel/Yetkililer?faces-redirect=true" value="YETKİLİLER"/>
-                <h:commandButton styleClass="btn btn-danger" action="/panel/Dosya?faces-redirect=true" value="DOSYA"/>
+                 <h:commandButton styleClass="btn btn-danger " action="/panel/Yorum?faces-redirect=true" value="YORUM"/>
+                <h:commandButton styleClass="btn btn-danger" rendered="#{isAdmin == true}" action="/panel/Dosya?faces-redirect=true" value="DOSYA"/>
+                <h:commandButton styleClass="btn btn-danger" rendered="#{isAdmin == true}" action="/panel/Yetkililer?faces-redirect=true" value="YETKİLİ EKLE"/>
                 <h:commandButton styleClass="btn btn-danger" rendered="#{validUser == null}" action="/panel/Oturum?faces-redirect=true" value="GİRİŞ YAP"/>
+                <h:commandButton styleClass="btn btn-danger" rendered="#{validUser == null}" action="/panel/Kayit?faces-redirect=true" value="KAYIT OL"/>
                 <h:commandButton styleClass="btn btn-danger" rendered="#{validUser != null}" action="/panel/logout?faces-redirect=true" value="ÇIKIŞ YAP"/>
             </div><br/><br/><br/>
 

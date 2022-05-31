@@ -11,7 +11,9 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -83,9 +85,28 @@ public class KullanicilarBean implements Serializable {
     }
     
     public void login(){
-        if(this.getDao().login(entity)){
+        if(this.getDao().login(entity) == 1){
             entity = new Kullanicilar();
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("validUser", entity);
+            Map<String, Object> eklenen = new HashMap<String, Object>()
+            {
+                {
+                    put("validUser", entity);
+                    put("isAdmin", true);
+                }
+            };
+            
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().putAll(eklenen);
+        }else if(this.getDao().login(entity) == 2){
+            entity = new Kullanicilar();
+            Map<String, Object> eklenen = new HashMap<String, Object>()
+            {
+                {
+                    put("validUser", entity);
+                    put("isAdmin", false);
+                }
+            };
+            
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().putAll(eklenen);
         }else{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Kullanıcı adı veya şifre yanlış"));
         }

@@ -12,7 +12,7 @@
 
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}"> 
             Yemek Adı Girin: <h:inputText value="#{anaYemekBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{anaYemekBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{anaYemekBean.entity.malzemeler}"/><br/>
@@ -27,7 +27,7 @@
 
         </h:form>
         <hr/>
-        <h:form>    
+        <h:form rendered="#{isAdmin == true}">    
             <h:dataTable value="#{anaYemekBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>

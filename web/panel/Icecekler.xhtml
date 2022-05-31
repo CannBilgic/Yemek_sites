@@ -11,7 +11,7 @@
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}">
             İçecek Adı Girin: <h:inputText value="#{iceceklerBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{iceceklerBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{iceceklerBean.entity.malzemeler}"/><br/>
@@ -26,7 +26,7 @@
 
         </h:form>
         <hr/>
-        <h:form>    
+        <h:form rendered="#{isAdmin == true}">    
             <h:dataTable value="#{iceceklerBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>

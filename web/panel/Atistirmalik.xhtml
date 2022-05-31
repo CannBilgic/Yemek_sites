@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}">
             Yemek Adı Girin: <h:inputText value="#{atistirmalikBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{atistirmalikBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{atistirmalikBean.entity.malzemeler}"/><br/>
@@ -30,7 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
         </h:form>
         <hr/>
-        <h:form>    
+        <h:form rendered="#{isAdmin == true}">    
             <h:dataTable value="#{atistirmalikBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
