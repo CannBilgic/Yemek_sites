@@ -10,8 +10,14 @@ import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.validator.ValidatorException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -70,9 +76,13 @@ public class KullanicilarBean implements Serializable {
     public void setList(List<Kullanicilar> list) {
         this.list = list;
     }
-    public void create(){
+    public void create() throws IOException{
         this.getDao().create(entity);
         entity = new Kullanicilar();
+        ExternalContext ec = FacesContext.getCurrentInstance()
+        .getExternalContext();
+        ec.redirect(ec.getRequestContextPath()
+            + "/panel/Oturum.xhtml");
     }
     public void delete(Kullanicilar k){
         this.getDao().delete(k);
@@ -98,7 +108,10 @@ public class KullanicilarBean implements Serializable {
         return true;
     }
     
-    public void login(){
+    public void login() throws IOException{
+        ExternalContext ec = FacesContext.getCurrentInstance()
+        .getExternalContext();      
+        
         if(this.getDao().login(entity) == 1){
             entity = new Kullanicilar();
             Map<String, Object> eklenen = new HashMap<String, Object>()
@@ -110,6 +123,8 @@ public class KullanicilarBean implements Serializable {
             };
             
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().putAll(eklenen);
+            ec.redirect(ec.getRequestContextPath()
+            + "/index.xhtml");
         }else if(this.getDao().login(entity) == 2){
             entity = new Kullanicilar();
             Map<String, Object> eklenen = new HashMap<String, Object>()
@@ -121,8 +136,11 @@ public class KullanicilarBean implements Serializable {
             };
             
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().putAll(eklenen);
+            ec.redirect(ec.getRequestContextPath()
+            + "/index.xhtml");
+          
         }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Kullanıcı adı veya şifre yanlış"));
+            FacesContext.getCurrentInstance().addMessage("form:password", new FacesMessage("Kullanıcı adı veya şifre yanlış"));
         }
     }
     public KullanicilarBean() {

@@ -15,6 +15,24 @@ import java.util.List;
  * @author mfurk
  */
 public class AnaYemekDAO extends DBConnection {
+    
+    public AnaYemek findByID(int id) {
+        AnaYemek k = null;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "SELECT * FROM ana_yemekler WHERE id="+ id;
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                k = new AnaYemek (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),
+                rs.getInt("hazirlama_sure"),rs.getInt("pisirme_sure"),rs.getInt("sef"));
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return k;
+    }
+    
     public void create(AnaYemek k){
         try{
             Statement st = this.getConnection().createStatement();
@@ -62,6 +80,21 @@ public class AnaYemekDAO extends DBConnection {
         }
         
         return list;
+    }
+    
+    public int count() {
+        int count = 0;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "Select count(id) as anayemek_count from ana_yemekler";
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            count=rs.getInt("anayemek_count");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
     }
 
 }

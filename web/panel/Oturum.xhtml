@@ -20,7 +20,7 @@
 		<h:outputText value="Şifre " />
                 <h:inputSecret id="password" validator="#{kullanicilarBean.validatePassword}" value="#{kullanicilarBean.entity.sifre}" ></h:inputSecret>
 		<h:message for="password" style="color: red; font-size: 10pt;" ></h:message>
-		<h:commandButton action="#{kullanicilarBean.login()}"
+		<h:commandButton action="#{kullanicilarBean.login()}" 
 			value="Giriş Yap"></h:commandButton>
                 </h:panelGrid>
 	</h:form>
