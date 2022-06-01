@@ -25,7 +25,7 @@
             </h:commandButton>
             <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.update()}" value="Kayit güncelle">
              <f:ajax execute="deniurunleri-form" render="denizurunleri-form denizurunleri-table"/>
-            </h:commandButton
+            </h:commandButton>  
             
             <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.clear()}" value="vazgeç">
              <f:ajax execute="@this" render="denizurunleri-form"/>
@@ -33,7 +33,7 @@
 
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}">
             <pre>page #{denizUrunleriBean.page} of #{denizUrunleriBean.pageCount}</pre>
             <h:commandButton action="#{denizUrunleriBean.previous()}" value="previous" >
                 <f:ajax execute="@this" render="denizurunleri-form"/>

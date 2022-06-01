@@ -25,7 +25,7 @@
             </h:commandButton>
             <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi!=null}" action="#{iceceklerBean.update()}" value="Kayit güncelle">
              <f:ajax execute="icecekler-form" render="icecekler-form icecekler-table"/>
-            </h:commandButton
+            </h:commandButton>  
             
             <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi!=null}" action="#{iceceklerBean.clear()}" value="vazgeç">
              <f:ajax execute="@this" render="icecekler-form"/>
@@ -33,7 +33,7 @@
 
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}">
             <pre>page #{iceceklerBean.page} of #{iceceklerBean.pageCount}</pre>
             <h:commandButton action="#{iceceklerBean.previous()}" value="previous" >
                 <f:ajax execute="@this" render="icecekler-form"/>

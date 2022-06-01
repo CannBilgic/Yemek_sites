@@ -35,7 +35,7 @@
 
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}">
             <pre>page #{anaYemekBean.page} of #{anaYemekBean.pageCount}</pre>
             <h:commandButton action="#{anaYemekBean.previous()}" value="previous" >
                 <f:ajax execute="@this" render="anayemek-form"/>

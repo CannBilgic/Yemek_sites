@@ -25,7 +25,7 @@
             </h:commandButton>
             <h:commandButton rendered="#{salatalarBean.entity.yemek_adi!=null}" action="#{salatalarBean.update()}" value="Kayit güncelle">
              <f:ajax execute="salatalar-form" render="salatalar-form salatalar-table"/>
-            </h:commandButton
+            </h:commandButton>  
             
             <h:commandButton rendered="#{salatalarBean.entity.yemek_adi!=null}" action="#{salatalarBean.clear()}" value="vazgeç">
              <f:ajax execute="@this" render="salatalar-form"/>
@@ -33,7 +33,7 @@
 
         </h:form>
         <hr/>
-        <h:form>
+        <h:form rendered="#{isAdmin == true}">
             <pre>page #{salatalarBean.page} of #{salatalarBean.pageCount}</pre>
             <h:commandButton action="#{salatalarBean.previous()}" value="previous" >
                 <f:ajax execute="@this" render="salatalar-form"/>
