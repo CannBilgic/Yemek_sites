@@ -4,19 +4,35 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Icecekler</title>
+        <title>Giris Yap</title>
     </h:head>
     <h:body>
-        <h:form>
-            <h:commandButton action="/index?faces-redirect=true" value="Main"/>
-        </h:form>
-        <hr/>
-        <h:form>
-            Kullanıcı Adı: <h:inputText value="#{kullanicilarBean.entity.kullanici_adi}" /><br />
-            Şifre: <h:inputSecret value="#{kullanicilarBean.entity.sifre}" /><br />
-            <h:commandButton action="#{kullanicilarBean.login()}" value="Giris" />
-        </h:form>
-        <hr/>
-        
+        <div class="centred-form">
+	<h:form id="form">
+            <h:panelGrid styleClass="centred-form">
+		<h3>Oturum Açın</h3>
+		<h:outputText value="Kullanıcı Adı " />
+		<h:inputText id="username" value="#{kullanicilarBean.entity.kullanici_adi}" required="true" requiredMessage="Kullanıcı adı boş bırakılamaz" >
+                <f:validateLength minimum="2" maximum="20"/>
+                </h:inputText>
+                <h:message for="username" style="color: red; font-size: 10pt;" ></h:message>
+		
+		<h:outputText value="Şifre " />
+                <h:inputSecret id="password" validator="#{kullanicilarBean.validatePassword}" value="#{kullanicilarBean.entity.sifre}" ></h:inputSecret>
+		<h:message for="password" style="color: red; font-size: 10pt;" ></h:message>
+		<h:commandButton action="#{kullanicilarBean.login()}"
+			value="Giriş Yap"></h:commandButton>
+                </h:panelGrid>
+	</h:form>
+        </div>
     </h:body>
 </html>
+
+
+
+
+
+
+
+
+
