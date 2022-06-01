@@ -11,8 +11,8 @@
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">
-            İçecek Adı Girin: <h:inputText value="#{iceceklerBean.entity.yemek_adi}"/><br/>
+        <h:form id="icecekler-form" rendered="#{isAdmin == true}">
+            Yemek Adı Girin: <h:inputText value="#{iceceklerBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{iceceklerBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{iceceklerBean.entity.malzemeler}"/><br/>
             Kaç Kişilik: <h:inputText value="#{iceceklerBean.entity.kac_kisilik}"/><br/>
@@ -20,20 +20,37 @@
             Pişirme Süresi: <h:inputText value="#{iceceklerBean.entity.pisirme_sure}"/><br/>
             Şef: <h:inputText value="#{iceceklerBean.entity.sef}"/><br/>
 
-            <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi==null}" action="#{iceceklerBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi!=null}" action="#{iceceklerBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi!=null}" action="#{iceceklerBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi==null}" action="#{iceceklerBean.create()}" value="Kayit et">
+             <f:ajax execute="icecekler-form" render="icecekler-form icecekler-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi!=null}" action="#{iceceklerBean.update()}" value="Kayit güncelle">
+             <f:ajax execute="icecekler-form" render="icecekler-form icecekler-table"/>
+            </h:commandButton
+            
+            <h:commandButton rendered="#{iceceklerBean.entity.yemek_adi!=null}" action="#{iceceklerBean.clear()}" value="vazgeç">
+             <f:ajax execute="@this" render="icecekler-form"/>
+            </h:commandButton>
 
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">    
+        <h:form>
+            <pre>page #{iceceklerBean.page} of #{iceceklerBean.pageCount}</pre>
+            <h:commandButton action="#{iceceklerBean.previous()}" value="previous" >
+                <f:ajax execute="@this" render="icecekler-form"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{iceceklerBean.next()}" value="next" >
+                <f:ajax execute="@this" render="icecekler-form"/>
+            </h:commandButton>
+        </h:form>
+        <h:form id="icecekler-table" rendered="#{isAdmin == true}">    
             <h:dataTable value="#{iceceklerBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                         #{entity.id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">İÇECEK ADI</f:facet>
+                    <f:facet name="header">YEMEK ADI</f:facet>
                         #{entity.yemek_adi}
                 </h:column>
                 <h:column>
@@ -62,8 +79,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{iceceklerBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{iceceklerBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{iceceklerBean.delete(entity)}" value="Sil">
+                    <f:ajax execute="icecekler-form icecekler-table" render="@this"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{iceceklerBean.setEntity(entity)}" value="güncelle">
+                    <f:ajax execute="icecekler-form " render="icecekler-form icecekler-table"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>

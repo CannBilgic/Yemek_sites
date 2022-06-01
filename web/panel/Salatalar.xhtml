@@ -11,7 +11,7 @@
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">
+        <h:form id="salatalar-form" rendered="#{isAdmin == true}">
             Yemek Adı Girin: <h:inputText value="#{salatalarBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{salatalarBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{salatalarBean.entity.malzemeler}"/><br/>
@@ -20,13 +20,30 @@
             Pişirme Süresi: <h:inputText value="#{salatalarBean.entity.pisirme_sure}"/><br/>
             Şef: <h:inputText value="#{salatalarBean.entity.sef}"/><br/>
 
-            <h:commandButton rendered="#{salatalarBean.entity.yemek_adi==null}" action="#{salatalarBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{salatalarBean.entity.yemek_adi!=null}" action="#{salatalarBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{salatalarBean.entity.yemek_adi!=null}" action="#{salatalarBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{salatalarBean.entity.yemek_adi==null}" action="#{salatalarBean.create()}" value="Kayit et">
+             <f:ajax execute="salatalar-form" render="salatalar-form salatalar-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{salatalarBean.entity.yemek_adi!=null}" action="#{salatalarBean.update()}" value="Kayit güncelle">
+             <f:ajax execute="salatalar-form" render="salatalar-form salatalar-table"/>
+            </h:commandButton
+            
+            <h:commandButton rendered="#{salatalarBean.entity.yemek_adi!=null}" action="#{salatalarBean.clear()}" value="vazgeç">
+             <f:ajax execute="@this" render="salatalar-form"/>
+            </h:commandButton>
 
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">    
+        <h:form>
+            <pre>page #{salatalarBean.page} of #{salatalarBean.pageCount}</pre>
+            <h:commandButton action="#{salatalarBean.previous()}" value="previous" >
+                <f:ajax execute="@this" render="salatalar-form"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{salatalarBean.next()}" value="next" >
+                <f:ajax execute="@this" render="salatalar-form"/>
+            </h:commandButton>
+        </h:form>
+        <h:form id="salatalar-table" rendered="#{isAdmin == true}">    
             <h:dataTable value="#{salatalarBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -62,8 +79,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{salatalarBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{salatalarBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{salatalarBean.delete(entity)}" value="Sil">
+                    <f:ajax execute="salatalar-form salatalar-table" render="@this"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{salatalarBean.setEntity(entity)}" value="güncelle">
+                    <f:ajax execute="salatalar-form " render="salatalar-form salatalar-table"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>

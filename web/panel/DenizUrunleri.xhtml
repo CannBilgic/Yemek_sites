@@ -11,7 +11,7 @@
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">
+        <h:form id="denizurunleri-form" rendered="#{isAdmin == true}">
             Yemek Adı Girin: <h:inputText value="#{denizUrunleriBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{denizUrunleriBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{denizUrunleriBean.entity.malzemeler}"/><br/>
@@ -20,13 +20,30 @@
             Pişirme Süresi: <h:inputText value="#{denizUrunleriBean.entity.pisirme_sure}"/><br/>
             Şef: <h:inputText value="#{denizUrunleriBean.entity.sef}"/><br/>
 
-            <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi==null}" action="#{denizUrunleriBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi==null}" action="#{denizUrunleriBean.create()}" value="Kayit et">
+             <f:ajax execute="denizurunleri-form" render="denizurunleri-form denizUrunleri-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.update()}" value="Kayit güncelle">
+             <f:ajax execute="deniurunleri-form" render="denizurunleri-form denizurunleri-table"/>
+            </h:commandButton
+            
+            <h:commandButton rendered="#{denizUrunleriBean.entity.yemek_adi!=null}" action="#{denizUrunleriBean.clear()}" value="vazgeç">
+             <f:ajax execute="@this" render="denizurunleri-form"/>
+            </h:commandButton>
 
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">    
+        <h:form>
+            <pre>page #{denizUrunleriBean.page} of #{denizUrunleriBean.pageCount}</pre>
+            <h:commandButton action="#{denizUrunleriBean.previous()}" value="previous" >
+                <f:ajax execute="@this" render="denizurunleri-form"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{denizUrunleriBean.next()}" value="next" >
+                <f:ajax execute="@this" render="denizurunleri-form"/>
+            </h:commandButton>
+        </h:form>
+        <h:form id="denizurunleri-table" rendered="#{isAdmin == true}">    
             <h:dataTable value="#{denizUrunleriBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -62,8 +79,12 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{denizUrunleriBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{denizUrunleriBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{denizUrunleriBean.delete(entity)}" value="Sil">
+                    <f:ajax execute="denizurunleri-form denizurunleri-table" render="@this"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{denizUrunleriBean.setEntity(entity)}" value="güncelle">
+                    <f:ajax execute="denizurunleri-form " render="denizurunleri-form denizurunleri-table"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>

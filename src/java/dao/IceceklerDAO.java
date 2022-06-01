@@ -15,6 +15,23 @@ import java.util.List;
  * @author mfurk
  */
 public class IceceklerDAO extends DBConnection {
+    
+     public Icecekler findByID(int id) {
+        Icecekler k = null;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "SELECT * FROM icecekler WHERE id="+ id;
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                k = new Icecekler (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),
+                rs.getInt("hazirlama_sure"),rs.getInt("pisirme_sure"),rs.getInt("sef"));
+            }
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return k;
+    }
     public void create(Icecekler k){
         try{
             Statement st = this.getConnection().createStatement();
@@ -62,5 +79,21 @@ public class IceceklerDAO extends DBConnection {
         }
         
         return list;
+    }
+
+    
+    public int count() {
+        int count = 0;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "Select count(id) as icecekler_count from icecekler";
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            count=rs.getInt("icecekler_count");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
     }
 }
