@@ -5,10 +5,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <title>Yorum</title>
+         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     </head>
     <body>
         <h:form>
-            <h:commandButton action="/index.xhtml?faces-redirect=true" value="Main"/>
+            <h:commandButton styleClass="btn btn-success" action="/index.xhtml?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
         <h:form id="yorum-form">         
@@ -23,30 +24,30 @@
             </h:selectOneMenu >
             <br/>
 
-            <h:commandButton rendered="#{yorumBean.entity.id==0}" action="#{yorumBean.create()}" value="Kayit et">
+            <h:commandButton styleClass="btn btn-success" rendered="#{yorumBean.entity.id==0}" action="#{yorumBean.create()}" value="Kayit et">
                 <f:ajax execute="yorum-form" render="yorum-form yorum-table"/>
             </h:commandButton>
-            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.update()}" value="Kayit güncelle">
+            <h:commandButton styleClass="btn btn-success" rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.update()}" value="Kayit güncelle">
                 <f:ajax execute="yorum-form" render="yorum-form yorum-table"/>
             </h:commandButton>
-            <h:commandButton rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.clear()}" value="vazgeç">
+            <h:commandButton styleClass="btn btn-danger" rendered="#{yorumBean.entity.id!=0}" action="#{yorumBean.clear()}" value="vazgeç">
                 <f:ajax execute="@this" render="yorum-form"/>
             </h:commandButton>
         </h:form>
         <h:form>
             <pre>page #{yorumBean.page} of #{yorumBean.pageCount}</pre>
-            <h:commandButton action="#{yorumBean.previous()}" value="previous" >
+            <h:commandButton styleClass="btn btn-success" action="#{yorumBean.previous()}" value="previous" >
                 <f:ajax execute="@this" render="yorum-table"/>
             </h:commandButton>
 
-            <h:commandButton action="#{yorumBean.next()}" value="next" >
+            <h:commandButton styleClass="btn btn-success" action="#{yorumBean.next()}" value="next" >
                 <f:ajax execute="@this" render="yorum-table"/>
             </h:commandButton>
         </h:form>
 
         <h:form id="yorum-table">
 
-            <h:dataTable value="#{yorumBean.list}" var="entity">
+            <h:dataTable styleClass="table table-striped table-hover"  value="#{yorumBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                         #{entity.id}
@@ -73,11 +74,11 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">ADMİN</f:facet>
-                    <h:commandButton action="#{yorumBean.delete(entity)}" value="Sil">
+                    <h:commandButton styleClass="btn btn-danger" action="#{yorumBean.delete(entity)}" value="Sil">
                         <f:ajax execute="yorum-form yorum-table" render="@this"/>
                     </h:commandButton>
 
-                    <h:commandButton action="#{yorumBean.setEntity(entity)}" value="güncelle">
+                    <h:commandButton styleClass="btn btn-success" action="#{yorumBean.setEntity(entity)}" value="güncelle">
                         <f:ajax execute="yorum-form " render="yorum-form yorum-table"/>
                     </h:commandButton>
                 </h:column>

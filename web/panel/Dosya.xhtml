@@ -7,10 +7,11 @@
       xmlns:pl="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Dosya</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     </h:head>
     <h:body>
         <h:form>
-            <h:commandButton action="/index?faces-redirect=true" value="Main"/>
+            <h:commandButton styleClass="btn btn-success" action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
         <h:form enctype="multipart/form-data">
@@ -18,7 +19,7 @@
             <label>Dosya</label>
             <h:inputFile value="#{dosyaBean.doc}" styleClass="custom-file"/>
         </div>
-        <h:commandButton action="#{dosyaBean.upload}" value="Upload" styleClass="btn-btn-primary"/>
+        <h:commandButton  action="#{dosyaBean.upload}" value="Upload" styleClass="btn-btn-primary"/>
         </h:form>
         <hr/>
         <h:form id="document-table">

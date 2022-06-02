@@ -5,10 +5,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Kayit</title>
+         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     </h:head>
     <h:body>
         <h:form>
-            <h:commandButton action="/index?faces-redirect=true" value="Main"/>
+            <h:commandButton styleClass="btn btn-success" action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
         <h:form>
@@ -18,8 +19,8 @@
             Yas girin: <h:inputText value="#{kullanicilarBean.entity.yas}"/><br/>
             Cinsiyet (kadınsanız tikli seçiniz): <h:selectBooleanCheckbox value="#{kullanicilarBean.entity.cinsiyet}"/> <br/>
             Aşçı mısınız: <h:selectBooleanCheckbox value="#{kullanicilarBean.entity.sef}"/> <br/>
-            <h:commandButton rendered="#{kullanicilarBean.entity.id==0}" action="#{kullanicilarBean.create()}" value="Kayit Ol"/>
-            <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.clear()}" value="Vazgeç"/>
+            <h:commandButton styleClass="btn btn-success" rendered="#{kullanicilarBean.entity.id==0}" action="#{kullanicilarBean.create()}" value="Kayit Ol"/>
+            <h:commandButton styleClass="btn btn-danger" rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.clear()}" value="Vazgeç"/>
 
         </h:form>
         <hr/>
