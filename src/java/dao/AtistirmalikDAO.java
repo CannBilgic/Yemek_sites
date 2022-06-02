@@ -31,7 +31,7 @@ public class AtistirmalikDAO extends DBConnection{
     public void update(Atistirmalik a){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update atistirmalik set yemek_adi='"+a.getYemek_adi()+"'where id=" +a.getId();
+            String query = "update atistirmalik set tarif='"+a.getTarif()+"'where id=" +a.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -48,11 +48,12 @@ public class AtistirmalikDAO extends DBConnection{
         }
     }
     
-    public List <Atistirmalik> getList(){
+    public List <Atistirmalik> getList(int page, int pageSize){
         List <Atistirmalik> list = new ArrayList<>();
+        int start=(page-1)*pageSize;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from atistirmalik";
+            String query = "select * from atistirmalik order by  id  limit '"+pageSize+"'offset "+ start;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new Atistirmalik (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),
@@ -63,6 +64,20 @@ public class AtistirmalikDAO extends DBConnection{
         }
         
         return list;
+    }
+    public int count() {
+        int count = 0;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "Select count(id) as at_count from atistirmalik";
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            count=rs.getInt("at_count");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
     }
 
 }

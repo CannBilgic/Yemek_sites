@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">
+        <h:form id="at-form" rendered="#{isAdmin == true}">
             Yemek Adı Girin: <h:inputText value="#{atistirmalikBean.entity.yemek_adi}"/><br/>
             Tarif Girin: <h:inputText value="#{atistirmalikBean.entity.tarif}"/><br/>
             Malzemeleri Girin: <h:inputText value="#{atistirmalikBean.entity.malzemeler}"/><br/>
@@ -24,13 +24,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             Pişirme Süresi: <h:inputText value="#{atistirmalikBean.entity.pisirme_sure}"/><br/>
             Şef: <h:inputText value="#{atistirmalikBean.entity.sef}"/><br/>
 
-            <h:commandButton rendered="#{atistirmalikBean.entity.yemek_adi==null}" action="#{atistirmalikBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{atistirmalikBean.entity.yemek_adi!=null}" action="#{atistirmalikBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{atistirmalikBean.entity.yemek_adi!=null}" action="#{atistirmalikBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{atistirmalikBean.entity.yemek_adi==null}" action="#{atistirmalikBean.create()}" value="Kayit et">
+                <f:ajax execute="@this" render="at-form"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{atistirmalikBean.entity.yemek_adi!=null}" action="#{atistirmalikBean.update()}" value="Kayit güncelle">
+                <f:ajax execute="@this" render="at-form"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{atistirmalikBean.entity.yemek_adi!=null}" action="#{atistirmalikBean.clear()}" value="vazgeç">
+                <f:ajax execute="@this" render="at-form-"/>
+            </h:commandButton>
 
         </h:form>
         <hr/>
-        <h:form rendered="#{isAdmin == true}">    
+        <h:form>
+            <pre>page #{atistirmalikBean.page} of #{atistirmalikBean.pageCount}</pre>
+            <h:commandButton action="#{atistirmalikBean.previous()}" value="previous" >
+                <f:ajax execute="@this" render="at-table"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{atistirmalikBean.next()}" value="next" >
+                <f:ajax execute="@this" render="at-table"/>
+            </h:commandButton>
+        </h:form>
+        <h:form id="at-table" rendered="#{isAdmin == true}">    
             <h:dataTable value="#{atistirmalikBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -66,8 +82,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{atistirmalikBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{atistirmalikBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{atistirmalikBean.delete(entity)}" value="Sil">
+                        <f:ajax execute="at-form at-table" render="@this"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{atistirmalikBean.setEntity(entity)}" value="güncelle">
+                        <f:ajax execute="at-form at-table" render="@this"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>
