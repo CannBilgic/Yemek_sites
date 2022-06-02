@@ -37,11 +37,11 @@
         <h:form rendered="#{isAdmin == true}">
             <pre>page #{denizUrunleriBean.page} of #{denizUrunleriBean.pageCount}</pre>
             <h:commandButton styleClass="btn btn-success" action="#{denizUrunleriBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="denizurunleri-form"/>
+                <f:ajax execute="@this" render="denizurunleri-table"/>
             </h:commandButton>
 
             <h:commandButton styleClass="btn btn-success" action="#{denizUrunleriBean.next()}" value="next" >
-                <f:ajax execute="@this" render="denizurunleri-form"/>
+                <f:ajax execute="@this" render="denizurunleri-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="denizurunleri-table" rendered="#{isAdmin == true}">    

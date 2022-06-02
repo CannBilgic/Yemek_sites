@@ -36,11 +36,11 @@
         <h:form>
             <pre>page #{atistirmalikBean.page} of #{atistirmalikBean.pageCount}</pre>
             <h:commandButton styleClass="btn btn-success" action="#{atistirmalikBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="atistirmalik-form"/>
+                <f:ajax execute="@this" render="atistirmalik-table"/>
             </h:commandButton>
 
             <h:commandButton styleClass="btn btn-success" action="#{atistirmalikBean.next()}" value="next" >
-                <f:ajax execute="@this" render="atistirmalik-form"/>
+                <f:ajax execute="@this" render="atistirmalik-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="atistirmalik-table" rendered="#{isAdmin == true}">    

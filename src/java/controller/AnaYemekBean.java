@@ -25,7 +25,8 @@ public class AnaYemekBean implements Serializable {
 
     public void next() {
         if (this.page == this.getPageCount()) {
-            this.page = 1;
+            
+           this.page = 1;
         } else {
             this.page++;
         }

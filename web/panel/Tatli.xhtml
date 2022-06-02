@@ -40,11 +40,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <h:form rendered="#{isAdmin == true}">
             <pre>page #{tatliBean.page} of #{tatliBean.pageCount}</pre>
             <h:commandButton styleClass="btn btn-success" action="#{tatliBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="tatli-form"/>  
+                <f:ajax execute="@this" render="tatli-table"/>  
             </h:commandButton>
 
             <h:commandButton  styleClass="btn btn-success" action="#{tatliBean.next()}" value="next" >
-                <f:ajax execute="@this" render="tatli-form"/>
+                <f:ajax execute="@this" render="tatli-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="tatli-table" rendered="#{isAdmin == true}">    

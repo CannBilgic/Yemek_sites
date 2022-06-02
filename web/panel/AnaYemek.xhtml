@@ -39,11 +39,11 @@
         <h:form rendered="#{isAdmin == true}">
             <pre>page #{anaYemekBean.page} of #{anaYemekBean.pageCount}</pre>
             <h:commandButton styleClass="btn btn-success" action="#{anaYemekBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="anayemek-form"/>  
+                <f:ajax execute="@this" render="anayemek-table"/>  
             </h:commandButton>
 
             <h:commandButton styleClass="btn btn-success" action="#{anaYemekBean.next()}" value="next" >
-                <f:ajax execute="@this" render="anayemek-form"/>
+                <f:ajax execute="@this" render="anayemek-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="anayemek-table" rendered="#{isAdmin == true}">    

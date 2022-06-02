@@ -37,11 +37,11 @@
         <h:form rendered="#{isAdmin == true}">
             <pre>page #{iceceklerBean.page} of #{iceceklerBean.pageCount}</pre>
             <h:commandButton styleClass="btn btn-success" action="#{iceceklerBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="icecekler-form"/>
+                <f:ajax execute="@this" render="icecekler-table"/>
             </h:commandButton>
 
             <h:commandButton styleClass="btn btn-success" action="#{iceceklerBean.next()}" value="next" >
-                <f:ajax execute="@this" render="icecekler-form"/>
+                <f:ajax execute="@this" render="icecekler-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="icecekler-table" rendered="#{isAdmin == true}">    

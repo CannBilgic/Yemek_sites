@@ -37,11 +37,11 @@
         <h:form rendered="#{isAdmin == true}">
             <pre>page #{salatalarBean.page} of #{salatalarBean.pageCount}</pre>
             <h:commandButton styleClass="btn btn-success" action="#{salatalarBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="salatalar-form"/>
+                <f:ajax execute="@this" render="salatalar-table"/>
             </h:commandButton>
 
             <h:commandButton styleClass="btn btn-success" action="#{salatalarBean.next()}" value="next" >
-                <f:ajax execute="@this" render="salatalar-form"/>
+                <f:ajax execute="@this" render="salatalar-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="salatalar-table" rendered="#{isAdmin == true}">    
