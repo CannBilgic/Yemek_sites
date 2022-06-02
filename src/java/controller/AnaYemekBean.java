@@ -94,7 +94,7 @@ public class AnaYemekBean implements Serializable {
     }
     
     public List<AnaYemek> getList() {
-        this.list = this.getDao().getList();
+        this.list = this.getDao().getList(page, pageSize);
         return list;
     }
     

@@ -66,11 +66,12 @@ public class SalatalarDAO extends DBConnection {
         }
     }
     
-    public List <Salatalar> getList(){
+    public List <Salatalar> getList(int page, int pageSize){
         List <Salatalar> list = new ArrayList<>();
+        int start=(page-1)*pageSize;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from salatalar";
+            String query = "select * from salatalar order by  id  limit '"+pageSize+"'offset "+ start;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new Salatalar (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),

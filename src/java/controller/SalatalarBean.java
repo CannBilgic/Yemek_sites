@@ -90,7 +90,7 @@ public class SalatalarBean implements Serializable {
     }
     
     public List<Salatalar> getList() {
-        this.list = this.getDao().getList();
+        this.list = this.getDao().getList(page, pageSize);
         return list;
     }
     

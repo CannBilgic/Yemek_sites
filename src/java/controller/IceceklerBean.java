@@ -95,7 +95,7 @@ public class IceceklerBean implements Serializable{
     }
     
     public List<Icecekler> getList() {
-        this.list = this.getDao().getList();
+        this.list = this.getDao().getList(page, pageSize);
         return list;
     }
     

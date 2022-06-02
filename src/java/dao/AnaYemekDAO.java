@@ -65,11 +65,12 @@ public class AnaYemekDAO extends DBConnection {
         }
     }
     
-    public List <AnaYemek> getList(){
+    public List <AnaYemek> getList(int page, int pageSize){
         List <AnaYemek> list = new ArrayList<>();
+        int start=(page-1)*pageSize;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from ana_yemekler";
+            String query = "select * from ana_yemekler order by  id  limit '"+pageSize+"'offset "+ start;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new AnaYemek (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),

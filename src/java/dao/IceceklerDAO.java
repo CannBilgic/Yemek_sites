@@ -64,11 +64,12 @@ public class IceceklerDAO extends DBConnection {
         }
     }
     
-    public List <Icecekler> getList(){
+    public List <Icecekler> getList(int page, int pageSize){
         List <Icecekler> list = new ArrayList<>();
+        int start=(page-1)*pageSize;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from icecekler";
+            String query = "select * from icecekler order by  id  limit '"+pageSize+"'offset "+ start;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new Icecekler (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),

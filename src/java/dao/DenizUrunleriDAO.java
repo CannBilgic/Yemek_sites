@@ -66,11 +66,12 @@ public class DenizUrunleriDAO extends DBConnection {
         }
     }
     
-    public List <DenizUrunleri> getList(){
+    public List <DenizUrunleri> getList(int page, int pageSize){
         List <DenizUrunleri> list = new ArrayList<>();
+        int start=(page-1)*pageSize;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from deniz_urunleri";
+            String query = "select * from deniz_urunleri order by  id  limit '"+pageSize+"'offset "+ start;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new DenizUrunleri (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),

@@ -90,7 +90,7 @@ public class DenizUrunleriBean implements Serializable {
     }
     
     public List<DenizUrunleri> getList() {
-        this.list = this.getDao().getList();
+        this.list = this.getDao().getList(page, pageSize);
         return list;
     }
     
