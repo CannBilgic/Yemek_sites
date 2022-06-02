@@ -7,7 +7,7 @@
         <title>Kullanicilar</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="kullanici-form">
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
@@ -19,13 +19,29 @@
             cinsiyet: <h:selectBooleanCheckbox value="#{kullanicilarBean.entity.cinsiyet}"/> <br/>
             sefmi: <h:selectBooleanCheckbox value="#{kullanicilarBean.entity.sef}"/> <br/>
 
-            <h:commandButton rendered="#{kullanicilarBean.entity.id==0}" action="#{kullanicilarBean.create()}" value="Kayit et"/>
-            <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.update()}" value="Kayit güncelle"/>
-            <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.clear()}" value="vazgeç"/>
+            <h:commandButton rendered="#{kullanicilarBean.entity.id==0}" action="#{kullanicilarBean.create()}" value="Kayit et">
+            <f:ajax execute="yorum-form" render="kullanici-form kullanici-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.update()}" value="Kayit güncelle">
+                <f:ajax execute="yorum-form" render="kullanici-form kullanici-table"/>
+            </h:commandButton>
+            <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.clear()}" value="vazgeç">
+                <f:ajax execute="yorum-form" render="kullanici-form kullanici-table"/>
+            </h:commandButton>
 
         </h:form>
         <hr/>
-        <h:form>    
+        <h:form>
+            <pre>page #{kullanicilarBean.page} of #{kullanicilarBean.pageCount}</pre>
+            <h:commandButton action="#{kullanicilarBean.previous()}" value="previous" >
+                <f:ajax execute="@this" render="kullanici-table"/>
+            </h:commandButton>
+
+            <h:commandButton action="#{kullanicilarBean.next()}" value="next" >
+                <f:ajax execute="@this" render="kullanici-table"/>
+            </h:commandButton>
+        </h:form>
+        <h:form id="kullanici-table" >    
             <h:dataTable value="#{kullanicilarBean.list}" var="entity">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -58,8 +74,12 @@
                 
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{kullanicilarBean.delete(entity)}" value="Sil"/>
-                    <h:commandButton action="#{kullanicilarBean.setEntity(entity)}" value="güncelle"/>
+                    <h:commandButton action="#{kullanicilarBean.delete(entity)}" value="Sil">
+                    <f:ajax execute="kullanici-form " render="kullanici-form kullanici-table"/>
+                    </h:commandButton>
+                    <h:commandButton action="#{kullanicilarBean.setEntity(entity)}" value="güncelle">
+                    <f:ajax execute="kullanici-form " render="kullanici-form kullanici-table"/>
+                    </h:commandButton>
                 </h:column>
             </h:dataTable>
         </h:form>

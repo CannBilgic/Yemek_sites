@@ -30,8 +30,8 @@ public class DosyaBean implements Serializable{
     private Part doc; 
     
     //DOSYA YOLU HER BİLGİSAYARDA DEGİSKENDİR
-    private String uploadTo = "C:/Users/mfurk/OneDrive/Belgeler/NetBeansProjects/yemek_site/Yemek_sites/web/resimler/";
-    
+   // private String uploadTo = "C:/Users/mfurk/OneDrive/Belgeler/NetBeansProjects/yemek_site/Yemek_sites/web/resimler/";
+    private String uploadTo = "C:/Users/bilgi/OneDrive/Belgeler/NetBeansProjects/YemekSitesi/web/resimler/";
     public void upload() {
         
         try {

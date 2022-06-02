@@ -22,7 +22,6 @@ public class YorumBean implements Serializable {
     private int page = 1;
     private int pageSize = 5;
     private int pageCount;
-
     public void next() {
         if (this.page == this.getPageCount()) {
             this.page = 1;
@@ -87,7 +86,6 @@ public class YorumBean implements Serializable {
         }
         return dao;
     }
-
     public void setDao(YorumDAO dao) {
         this.dao = dao;
     }
@@ -119,7 +117,7 @@ public class YorumBean implements Serializable {
         this.getDao().update(entity);
         entity = new Yorum();
     }
-
+    
     public YorumBean() {
     }
 

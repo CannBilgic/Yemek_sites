@@ -36,11 +36,11 @@
         <h:form>
             <pre>page #{yorumBean.page} of #{yorumBean.pageCount}</pre>
             <h:commandButton action="#{yorumBean.previous()}" value="previous" >
-                <f:ajax execute="@this" render="yorum-form"/>
+                <f:ajax execute="@this" render="yorum-table"/>
             </h:commandButton>
 
             <h:commandButton action="#{yorumBean.next()}" value="next" >
-                <f:ajax execute="@this" render="yorum-form"/>
+                <f:ajax execute="@this" render="yorum-table"/>
             </h:commandButton>
         </h:form>
 

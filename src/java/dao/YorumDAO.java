@@ -62,7 +62,7 @@ public class YorumDAO extends DBConnection {
             System.out.println(ex.getMessage());
         }
     }
-
+    
     public List<Yorum> getList(int page, int pageSize) {
         List<Yorum> list = new ArrayList<>();
         int start=(page-1)*pageSize;
@@ -95,5 +95,5 @@ public class YorumDAO extends DBConnection {
         }
         return count;
     }
-
+    
 }

@@ -91,3 +91,10 @@ create table yoreseller(
 	id int primary key references ana_yemekler(id),
 	yore varchar(40)	
 );
+
+create table dosya(
+    id serial primary key,
+    dosya_ad varchar(100),
+    dosya_yol varchar(300),
+    dosya_tip varchar(100)
+);
