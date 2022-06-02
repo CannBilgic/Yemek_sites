@@ -10,10 +10,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <head>
         <title>Tatlılar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
     </head>
     <body>
         <h:form>
-            <h:commandButton action="/index?faces-redirect=true" value="Main"/>
+            <h:commandButton styleClass="btn btn-success" action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
         <h:form id="tatli-form" rendered="#{isAdmin == true}">
@@ -25,13 +26,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             Pişirme Süresi: <h:inputText value="#{tatliBean.entity.pisirme_sure}"/><br/>
             Şef: <h:inputText value="#{tatliBean.entity.sef}"/><br/>
 
-            <h:commandButton rendered="#{tatliBean.entity.yemek_adi==null}" action="#{tatliBean.create()}" value="Kayit et">
+            <h:commandButton styleClass="btn btn-success" rendered="#{tatliBean.entity.yemek_adi==null}" action="#{tatliBean.create()}" value="Kayit et">
                 <f:ajax execute="tatli-form" render="tatli-form tatli-table"/>
             </h:commandButton>
-            <h:commandButton rendered="#{tatliBean.entity.yemek_adi!=null}" action="#{tatliBean.update()}" value="Kayit güncelle">
+            <h:commandButton styleClass="btn btn-success" rendered="#{tatliBean.entity.yemek_adi!=null}" action="#{tatliBean.update()}" value="Kayit güncelle">
                 <f:ajax execute="tatli-form" render="tatli-form tatli-table"/>
             </h:commandButton>
-            <h:commandButton rendered="#{tatliBean.entity.yemek_adi!=null}" action="#{tatliBean.clear()}" value="vazgeç">
+            <h:commandButton styleClass="btn btn-success" rendered="#{tatliBean.entity.yemek_adi!=null}" action="#{tatliBean.clear()}" value="vazgeç">
                 <f:ajax execute="@this" render="tatli-form"/>
             </h:commandButton>
         </h:form>
@@ -42,7 +43,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <f:ajax execute="@this" render="tatli-form"/>  
             </h:commandButton>
 
-            <h:commandButton styleClass="btn btn-success" action="#{tatliBean.next()}" value="next" >
+            <h:commandButton  styleClass="btn btn-success" action="#{tatliBean.next()}" value="next" >
                 <f:ajax execute="@this" render="tatli-form"/>
             </h:commandButton>
         </h:form>
@@ -82,10 +83,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </h:column>
                 <h:column>
                     <f:facet name="header">Admin</f:facet>
-                    <h:commandButton action="#{tatliBean.delete(entity)}" value="Sil">
+                    <h:commandButton styleClass="btn btn-danger" action="#{tatliBean.delete(entity)}" value="Sil">
                     <f:ajax execute="tatli-form tatli-table" render="@this"/>
                     </h:commandButton>
-                    <h:commandButton action="#{tatliBean.setEntity(entity)}" value="güncelle">
+                    <h:commandButton styleClass="btn btn-success" action="#{tatliBean.setEntity(entity)}" value="Güncelle">
                     <f:ajax execute="tatli-form " render="tatli-form tatli-table"/>
                     </h:commandButton>
                 </h:column>
