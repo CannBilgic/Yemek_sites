@@ -48,11 +48,12 @@ public class TatliDAO extends DBConnection{
         }
     }
     
-    public List <Tatli> getList(){
+    public List <Tatli> getList(int page, int pageSize){
         List <Tatli> list = new ArrayList<>();
+        int start=(page-1)*pageSize;
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "select * from tatlilar";
+            String query = "select * from tatlilar order by  id  limit '"+pageSize+"'offset "+ start;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 list.add(new Tatli (rs.getInt("id"),rs.getString("yemek_adi"),rs.getString("tarif"),rs.getString("malzemeler"),rs.getInt("kac_kisilik"),
@@ -64,7 +65,20 @@ public class TatliDAO extends DBConnection{
         
         return list;
     }
+    public int count() {
+        int count = 0;
+        try {
+            Statement st = this.getConnection().createStatement();
+            String query = "Select count(id) as tatli_count from tatlilar";
+            ResultSet rs = st.executeQuery(query);
+            rs.next();
+            count=rs.getInt("tatli_count");
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return count;
+    }
 }
 
 
