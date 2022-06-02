@@ -7,11 +7,11 @@
         <title>Kullanicilar</title>
     </h:head>
     <h:body>
-        <h:form id="kullanici-form">
+        <h:form >
             <h:commandButton action="/index?faces-redirect=true" value="Main"/>
         </h:form>
         <hr/>
-        <h:form>
+        <h:form id="kullanici-form">
             Kullanici Adi girin: <h:inputText value="#{kullanicilarBean.entity.kullanici_adi}"/><br/>
             sifre girin: <h:inputText value="#{kullanicilarBean.entity.sifre}"/><br/>
             sehir girin: <h:inputText value="#{kullanicilarBean.entity.sehir}"/><br/>
@@ -20,13 +20,13 @@
             sefmi: <h:selectBooleanCheckbox value="#{kullanicilarBean.entity.sef}"/> <br/>
 
             <h:commandButton rendered="#{kullanicilarBean.entity.id==0}" action="#{kullanicilarBean.create()}" value="Kayit et">
-            <f:ajax execute="yorum-form" render="kullanici-form kullanici-table"/>
+            <f:ajax execute="kullanici-form" render="kullanici-form kullanici-table"/>
             </h:commandButton>
             <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.update()}" value="Kayit güncelle">
-                <f:ajax execute="yorum-form" render="kullanici-form kullanici-table"/>
+                <f:ajax execute="kullanici-form" render="kullanici-form kullanici-table"/>
             </h:commandButton>
             <h:commandButton rendered="#{kullanicilarBean.entity.id!=0}" action="#{kullanicilarBean.clear()}" value="vazgeç">
-                <f:ajax execute="yorum-form" render="kullanici-form kullanici-table"/>
+                <f:ajax execute="@this" render="kullanici-form"/>
             </h:commandButton>
 
         </h:form>

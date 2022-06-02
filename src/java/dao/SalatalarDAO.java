@@ -49,7 +49,7 @@ public class SalatalarDAO extends DBConnection {
     public void update(Salatalar k){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update salatalar set yemek_adi='"+k.getYemek_adi()+"'where id=" +k.getId();
+            String query = "update salatalar set tarif='"+k.getTarif()+"'where id=" +k.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());

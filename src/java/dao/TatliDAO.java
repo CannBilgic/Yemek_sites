@@ -31,7 +31,7 @@ public class TatliDAO extends DBConnection{
     public void update(Tatli t){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update tatlilar set yemek_adi='"+t.getYemek_adi()+"'where id=" +t.getId();
+            String query = "update tatlilar set tarif='"+t.getTarif()+"'where id=" +t.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());

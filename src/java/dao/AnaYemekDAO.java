@@ -48,7 +48,7 @@ public class AnaYemekDAO extends DBConnection {
     public void update(AnaYemek k){
         try {
             Statement st = this.getConnection().createStatement();
-            String query = "update ana_yemekler set yemek_adi='"+k.getYemek_adi()+"'where id=" +k.getId();
+            String query = "update ana_yemekler set tarif='"+k.getTarif()+"'where id=" +k.getId();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println(e.getMessage());
